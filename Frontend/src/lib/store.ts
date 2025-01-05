@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { counterSlice } from './features/counter/counterSlice'
+import { expensesSlice } from './features/expenses/expensesSlice'
+import { limitsSlice } from './features/limits/limitsSlice'
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      counter: counterSlice.reducer
+      expense: expensesSlice.reducer,
+      limit: limitsSlice.reducer,
     },
     devTools: true
   })
