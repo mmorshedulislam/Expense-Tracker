@@ -1,14 +1,28 @@
 "use client";
-import { useSelector } from "react-redux";
+
+import UseProgressBar from "@/components/common/UseProgressBar/UseProgressBar";
+import ExpenseForm from "@/components/ExpenseForm";
+import ExpenseSummary from "@/components/ExpenseSummary";
+import LimitSetup from "@/components/LimitSetup";
 // import styles from "./page.module.css";
-import type { RootState } from "./../lib/store";
 
 export default function Home() {
-  const { Utility } = useSelector((state: RootState) => state.limit);
-
   return (
     <div>
-      <h1 className={"gello"}>Utility: {Utility}</h1>
+      <div className="max-width">
+        <h2 className="main-heading">Your Expense Tracker</h2>
+        <UseProgressBar progress={260 / 10} title="Groceries" />
+        <div className="main-container">
+          <div>
+            <LimitSetup />
+          </div>
+
+          <div>
+            <ExpenseForm />
+            <ExpenseSummary />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
