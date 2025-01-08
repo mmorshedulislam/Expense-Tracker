@@ -1,7 +1,7 @@
 import express, { Application, Request, Response, NextFunction } from "express";
 import cors from "cors";
-import expenseRoutes from "./routes/expense.routes";
 import limitRoutes from "./routes/limit.routes";
+import expenseRoutes from "./routes/expense.routes";
 
 const app: Application = express();
 
@@ -15,8 +15,8 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 // Routes
-app.use("/api/limits", limitRoutes);
 app.use("/api/expenses", expenseRoutes);
+app.use("/api/limits", limitRoutes);
 
 // Route not found handler
 app.use((req: Request, res: Response, next: NextFunction) => {

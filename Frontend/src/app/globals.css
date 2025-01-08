@@ -1,6 +1,10 @@
 :root {
-  --primary-color: #735d5d;
-  --btn-color: #007bff;
+  --primary-color: #4d6163;
+  --text-color: #4e5d78;
+  --btn-color: #4d6163;
+  --font-size-large: 1.5rem;
+  --font-size-medium: 1rem;
+  --font-size-small: 0.875rem;
 }
 
 * {
@@ -16,16 +20,18 @@ body {
     radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);
   background-size: 20px 20px;
   background-position: 0 0, 10px 10px;
+  font-family: "Poppins", sans-serif;
 }
 
 .max-width {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .main-heading {
-  font-size: 48px;
+  font-size: var(--font-size-large);
   font-weight: 600;
   text-align: center;
   padding: 20px 0;
@@ -33,7 +39,7 @@ body {
 }
 
 .heading {
-  font-size: 24px;
+  font-size: var(--font-size-medium);
   font-weight: 600;
   color: var(--primary-color);
   margin-bottom: 20px;
@@ -60,36 +66,38 @@ body {
   height: 30px;
   transform: skew(30deg);
   font-family: "Orbitron", monospace;
+  background-color: #ddd; /* Default background color */
+}
 
-  &:before {
-    --width: calc(var(--p) * 1%);
+.range:before {
+  --width: calc(var(--p) * 1%);
+  --progress-color: #00c85393; /* Default color, will be overridden */
 
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background-color: #f3e600;
-    z-index: 0;
-    animation: load 0.5s forwards linear, glitch 2s infinite linear;
-  }
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--primary-color); /* Dynamically set color */
+  z-index: 0;
+  animation: load 0.5s forwards linear, glitch 2s infinite linear;
+}
 
-  &:after {
-    counter-reset: progress var(--p);
-    content: counter(progress) "%";
-    color: #000;
-    position: absolute;
-    left: 5%;
-    top: 50%;
-    transform: translateY(-50%) skewX(-30deg);
-    z-index: 1;
-  }
+.range:after {
+  counter-reset: progress var(--p);
+  content: counter(progress) "%";
+  color: #fff;
+  position: absolute;
+  left: 5%;
+  top: 50%;
+  transform: translateY(-50%) skewX(-30deg);
+  z-index: 1;
+}
 
-  &__label {
-    transform: skew(-30deg) translateY(-100%);
-    line-height: 1.5;
-  }
+.range__label {
+  transform: skew(-30deg) translateY(-100%);
+  line-height: 1.5;
 }
 
 @keyframes load {
@@ -116,10 +124,13 @@ body {
     transform: translate(2%, -23%);
   }
 }
-/* COMMON PROGRESS BAR ENDS */
 
 /* EXPENSE FORM STARTS */
-.expense-form {
+.expense-form,
+.monthly-summary,
+.expense-limit,
+.limit-box,
+.monthly-summary {
   margin-bottom: 20px;
   padding: 20px;
   border: 1px solid #ddd;
@@ -142,6 +153,7 @@ label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+  color: var(--text-color);
 }
 
 input,
@@ -164,16 +176,100 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #4d6163b5;
 }
 /* EXPENSE FORM ENDS */
 
 /* EXPENSE LIMIT STARTS */
-.expense-limit {
-  margin-bottom: 20px;
-  padding: 20px;
+
+.limit-form {
+  flex-direction: column;
+}
+
+.limit-form .form-group {
+  margin-bottom: 0px;
+}
+.limit-form button {
+  margin-top: 10px;
+}
+/* EXPENSE LIMIT ENDS */
+
+/* CURRENT LIMIT STARTS */
+.current-limit-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+}
+.current-limit-box {
+  /* width: 30%; */
+  border: 1px solid var(--primary-color);
+  padding: 15px;
+  border-radius: 15px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--primary-color);
+}
+.current-limit-box span {
+  font-size: 20px;
+  font-weight: 700;
+}
+/* CURRENT LIMIT ENDS */
+
+/* PROGRESS LIMIT STARTS */
+.progress-limit {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.progress-title {
+  margin-bottom: 5px;
+  color: var(--text-color);
+  font-size: 14px;
+}
+.progress-limit .heading {
+  margin-bottom: 0;
+}
+/* PROGRESS LIMIT ENDS */
+
+/* TABLE STARTS */
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
   border: 1px solid #ddd;
-  border-radius: 10px;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
   background-color: #f9f9f9;
 }
-/* EXPENSE LIMIT LIMITS */
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+table td {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+table td:hover {
+  background-color: #f1f1f1;
+}
+
+/* TABLE ENDS */

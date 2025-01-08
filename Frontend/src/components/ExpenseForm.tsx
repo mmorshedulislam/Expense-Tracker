@@ -1,20 +1,29 @@
-import React from "react";
+import { useCreateExpenseMutation } from "@/lib/features/limitApi/expenseApi";
+import { useHandleMutationEffect } from "@/lib/hooks/useHandleMutationEffect";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 interface ExpenseFormInputs {
   category: string;
-  description: string;
+  purpose: string;
   amount: number;
 }
 
 const ExpenseForm: React.FC = () => {
   const { handleSubmit, register, reset } = useForm<ExpenseFormInputs>();
+  const [createExpense, { isLoading, isError, error, isSuccess, data }] =
+    useCreateExpenseMutation();
 
   const handleExpense = (data: ExpenseFormInputs) => {
-    console.log("Expense Submitted:", data);
-    // Reset the form after submission
-    reset();
+    createExpense(data);
   };
+
+  useHandleMutationEffect({ isLoading, isError, error, isSuccess, data });
+  useEffect(() => {
+    if (isSuccess) {
+      reset();
+    }
+  }, [isSuccess, reset]);
 
   return (
     <div className="expense-form">
@@ -41,12 +50,12 @@ const ExpenseForm: React.FC = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="description">Purpose</label>
+            <label htmlFor="purpose">Purpose</label>
             <input
-              id="description"
+              id="purpose"
               type="text"
               placeholder="Enter purpose of expense"
-              {...register("description", { required: true })}
+              {...register("purpose", { required: true })}
             />
           </div>
 

@@ -1,19 +1,83 @@
-/* For smaller screens (tablets and phones) */
+/* For screens less than or equal to 768px (tablets and smaller devices) */
 @media (max-width: 768px) {
-  .max-width {
-    padding: 0 20px;
-  }
   .main-container {
     grid-template-columns: 1fr; /* Stacks the items vertically */
   }
+
+  .heading {
+    font-size: var(--font-size-medium);
+  }
+
+  .main-heading {
+    font-size: 1.25rem;
+  }
+
+  .current-limit-area {
+    grid-template-columns: 1fr; /* Stack items vertically */
+  }
+
+  .range {
+    max-width: 100%; /* Allow progress bar to scale */
+  }
+
+  .table-container {
+    overflow-x: auto; /* Allows horizontal scrolling on smaller screens */
+  }
+
+  table {
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+
+  th,
+  td {
+    padding: 6px; /* Reduce padding for smaller screens */
+  }
 }
 
-/* For larger screens (desktops) */
-@media (min-width: 769px) {
-  .max-width {
-    padding: 0 20px;
-  }
+/* For screens between 769px and 1024px (small desktops and large tablets) */
+@media (min-width: 769px) and (max-width: 1024px) {
   .main-container {
-    grid-template-columns: 1fr 3fr; /* Restores the two-column layout */
+    grid-template-columns: 1fr 2fr; /* Adjust to smaller two-column layout */
+  }
+
+  .current-limit-area {
+    grid-template-columns: repeat(2, 1fr); /* Two items per row */
+  }
+
+  .heading {
+    font-size: 1.25rem;
+  }
+
+  .main-heading {
+    font-size: 1.5rem;
+  }
+
+  table {
+    font-size: 16px; /* Medium font size for tablets */
+  }
+
+  th,
+  td {
+    padding: 8px; /* Standard padding for medium screens */
+  }
+}
+
+/* For screens wider than 1024px */
+@media (min-width: 1025px) {
+  .main-container {
+    grid-template-columns: 1fr 3fr; /* Restore the wider layout */
+  }
+
+  .current-limit-area {
+    grid-template-columns: repeat(3, 1fr); /* Three items per row */
+  }
+
+  table {
+    font-size: 14px; /* Standard font size for desktops */
+  }
+
+  th,
+  td {
+    padding: 10px; /* Standard padding for desktops */
   }
 }
