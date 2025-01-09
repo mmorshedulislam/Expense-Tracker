@@ -1,5 +1,18 @@
 import apiSlice from "./../api/apiSlice";
 
+interface Limit {
+  _id: string;
+  category: string;
+  limit: number;
+  month: number;
+  year: number;
+}
+
+interface LimitsResponse {
+  success: boolean;
+  data: Limit[];
+}
+
 const limitApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     createLimit: builder.mutation<void, { category: string; limit: number }>({
@@ -10,7 +23,7 @@ const limitApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Limit"],
     }),
-    getLimits: builder.query<any[], void>({
+    getLimits: builder.query<LimitsResponse, void>({
       query: () => ({
         url: `/api/limits`,
         method: "GET",

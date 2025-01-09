@@ -20,6 +20,7 @@ const expenseApi = apiSlice.injectEndpoints({
             }),
             providesTags: ["Expense"],
         }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         getCategoryUsagePercent: builder.query<any, { month: number; year: number }>({
             query: ({ month, year }) => ({
                 url: `/api/expenses/category-usage?month=${month}&year=${year}`,
@@ -27,6 +28,7 @@ const expenseApi = apiSlice.injectEndpoints({
             }),
             providesTags: ["Expense"],
         }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         getMonthlySummary: builder.query<any, { month: number; year: number }>({
             query: ({ month, year }) => ({
                 url: `/api/expenses/monthly-summary?month=${month}&year=${year}`,
@@ -34,6 +36,7 @@ const expenseApi = apiSlice.injectEndpoints({
             }),
             providesTags: ["Expense"],
         }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         getDailySummary: builder.query<any, { day: number, month: number; year: number, category: string }>({
             query: ({ day, month, year, category }) => ({
                 url: `/api/expenses/daily-summary?category=${category}&day=${day}&month=${month}&year=${year}`,
