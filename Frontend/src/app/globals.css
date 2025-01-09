@@ -2,6 +2,7 @@
   --primary-color: #4d6163;
   --text-color: #4e5d78;
   --btn-color: #4d6163;
+  --border-color: #bdcccd;
   --font-size-large: 1.5rem;
   --font-size-medium: 1rem;
   --font-size-small: 0.875rem;
@@ -108,22 +109,162 @@ body {
 
 @keyframes glitch {
   0%,
-  5% {
+  10% {
     transform: translate(0, 0);
   }
-  1% {
-    transform: translate(-5%, -10%);
-  }
-  2% {
-    transform: translate(10%, 30%);
-  }
   3% {
-    transform: translate(-43%, 10%);
+    transform: translate(-2%, -5%);
   }
-  4% {
-    transform: translate(2%, -23%);
+  6% {
+    transform: translate(3%, 5%);
+  }
+  9% {
+    transform: translate(-1%, -2%);
   }
 }
+
+/* COMMON PROGRESS BAR ENDS */
+
+/* LOADER STARTS */
+/* HTML: <div class="loader"></div> */
+.pre-loader {
+  width: 80px;
+  aspect-ratio: 1;
+  border: 10px solid #0000;
+  box-sizing: border-box;
+  background: 
+    radial-gradient(farthest-side,#fff 98%,#0000) 0    0/20px 20px,
+    radial-gradient(farthest-side,#fff 98%,#0000) 100% 0/20px 20px,
+    radial-gradient(farthest-side,#fff 98%,#0000) 100% 100%/20px 20px,
+    radial-gradient(farthest-side,#fff 98%,#0000) 0 100%/20px 20px,
+    linear-gradient(#fff 0 0) 50%/40px 40px,
+    #000;
+  background-repeat:no-repeat;
+  filter: blur(4px) contrast(10);
+  animation: l12 0.8s infinite;
+}
+@keyframes l12 {
+  100%  {background-position:100% 0,100% 100%,0 100%,0 0,center}
+}
+
+
+
+.loader {
+  width: 120px;
+  height: 22px;
+  border-radius: 40px;
+  color: #514b82;
+  border: 2px solid;
+  position: relative;
+  overflow: hidden;
+}
+.loader::before {
+  content: "";
+  position: absolute;
+  margin: 2px;
+  width: 14px;
+  top: 0;
+  bottom: 0;
+  left: -20px;
+  border-radius: inherit;
+  background: currentColor;
+  box-shadow: -10px 0 12px 3px currentColor;
+  clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 95%, -30px 50%);
+  animation: l14 1s infinite linear;
+}
+@keyframes l14 {
+  100% {
+    left: calc(100% + 20px);
+  }
+}
+/* LOADER ENDS */
+
+/* PROGRESS SKELETON STARTS */
+.skeleton {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+/* Skeleton for Title */
+.skeleton-title {
+  width: 150px;
+  height: 20px;
+  margin-bottom: 10px;
+}
+
+/* Skeleton for Progress Bar */
+.range.skeleton {
+  width: 300px;
+  height: 30px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+/* PROGRESS SKELETON ENDS */
+
+/* LIMIT BOX SKELETON STARTS */
+/* Skeleton Loader */
+.limit-box .skeleton {
+  background: #f0f0f0;
+  border-radius: 15px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.limit-box .skeleton-title {
+  background: #e0e0e0;
+  height: 20px;
+  width: 50%;
+  border-radius: 4px;
+}
+
+.limit-box .skeleton-value {
+  background: #d0d0d0;
+  height: 20px;
+  width: 30%;
+  border-radius: 4px;
+}
+/* LIMIT BOX SKELETON ENDS */
+
+/* TABLE SKELETON STARTS */
+.skeleton-cell {
+  height: 20px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-color: #f0f0f0;
+  }
+  50% {
+    background-color: #e0e0e0;
+  }
+  100% {
+    background-color: #f0f0f0;
+  }
+}
+/* TABLE SKELETON ENDS */
+
+/* MODAL STARTS */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+/* MODAL ENDS */
 
 /* EXPENSE FORM STARTS */
 .expense-form,
@@ -181,7 +322,6 @@ button:hover {
 /* EXPENSE FORM ENDS */
 
 /* EXPENSE LIMIT STARTS */
-
 .limit-form {
   flex-direction: column;
 }
@@ -202,8 +342,8 @@ button:hover {
 }
 .current-limit-box {
   /* width: 30%; */
-  border: 1px solid var(--primary-color);
-  padding: 15px;
+  border: 1px solid var(--border-color);
+  padding: 10px 15px;
   border-radius: 15px;
   background-color: white;
   display: flex;
@@ -236,11 +376,13 @@ button:hover {
 /* TABLE STARTS */
 .table-container {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: auto;
 }
 
 th,
@@ -252,7 +394,7 @@ td {
 
 th {
   background-color: #f4f4f4;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 tr:nth-child(even) {

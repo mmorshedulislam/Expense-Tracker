@@ -21,16 +21,21 @@
   }
 
   .table-container {
-    overflow-x: auto; /* Allows horizontal scrolling on smaller screens */
+    overflow-x: auto; /* Enables horizontal scrolling */
   }
 
   table {
-    font-size: 14px; /* Adjust font size for smaller screens */
+    font-size: 12px; /* Smaller font size for mobile devices */
+    table-layout: fixed;
   }
 
   th,
   td {
-    padding: 6px; /* Reduce padding for smaller screens */
+    padding: 6px; /* Smaller padding for mobile devices */
+  }
+  .expense-form .form-container {
+    gap: 0px;
+    flex-direction: column;
   }
 }
 
@@ -53,7 +58,7 @@
   }
 
   table {
-    font-size: 16px; /* Medium font size for tablets */
+    font-size: 14px; /* Medium font size for tablets */
   }
 
   th,
@@ -73,7 +78,7 @@
   }
 
   table {
-    font-size: 14px; /* Standard font size for desktops */
+    font-size: 16px; /* Default font size for desktops */
   }
 
   th,

@@ -37,8 +37,8 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, content }) => {
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {title && <h2 style={{ marginBottom: "16px" }}>{title}</h2>}
-        <div>{content}</div>
+        {title && <h4 style={{ marginBottom: "16px" }}>{title}</h4>}
+        <div className="modal-content">{content}</div>
         <button
           onClick={onClose}
           style={{
